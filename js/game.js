@@ -1,4 +1,4 @@
-const numDivs = 36;
+
 const maxHits = 10;
 
 let hits = 0;

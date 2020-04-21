@@ -1,8 +1,22 @@
+.grid-wrapper {
+	display: grid;
+	grid-gap: 0.5vw;
+	/*grid-template-columns: repeat(auto-fit, minmax(6em, 1fr));
+	grid-template-rows: auto;*/
+	grid-template-areas:
+		"item item item item item item"
+		"item item item item item item"
+		"item item item item item item"
+		"item item item item item item"
+		"item item item item item item"
+		"item item item item item item"
+
+}
+
 .game-field {
   background-color: orange;
-  min-height: 10vh;
-  margin: 1px 1px 1px 1px;
-  line-height: 10vh;
+  min-height: 5em;
+  min-width: 3em;
 }
 
 .target {
