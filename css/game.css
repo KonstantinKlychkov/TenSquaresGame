@@ -20,12 +20,21 @@
 }
 
 .target {
+  display: flex;
   background-color: green;
   color: white;
-  font-size: 24pt;
-  text-align: center;
+
+  font-size: 12pt;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 5em;
+  min-width: 3em;
 }
 
 .miss {
   background-color: red;
+
+  min-height: 5em;
+  min-width: 3em;
 }
