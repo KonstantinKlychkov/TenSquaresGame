@@ -2,8 +2,11 @@
 const maxHits = 10;
 
 let hits = 0;
+let missed = 0;
 let firstHitTime = 0;
-divSelector = '#slot-11';
+var divSelector = '#slot-11';
+var missedFieldId = '#slot-11';
+var missedList = [];
 
 function getTimestamp() {
   let d = new Date();
@@ -17,23 +20,22 @@ function randomDivId() {
 }
 
 function round() {
+
   if (hits >= maxHits) {
     endGame();
   } else {
-    if ($(divSelector).hasClass("target")) {
       $(divSelector).removeClass("target");
       $(divSelector).text('');
-    } else if ($(divSelector).hasClass("miss")) {
-      $(divSelector).removeClass("miss");
-      $(divSelector).text('');
-  }
-    divSelector = randomDivId();
-    $(divSelector).addClass("target");
-    $(divSelector).text(hits+1);
-    // TODO: помечать target текущим номером
+      missedList.forEach( element => $(element).removeClass("miss"));
+    }
 
-    // FIXME: тут надо определять при первом клике firstHitTime
-  };
+  divSelector = randomDivId();
+  $(divSelector).addClass("target");
+  $(divSelector).text(hits+1);
+  
+  if (hits == 0) {
+    firstHitTime = getTimestamp();
+  }
 }
 
 function endGame() {
@@ -47,11 +49,15 @@ function endGame() {
 }
 
 function handleClick(event) {
-  // FIXME: убирать текст со старых таргетов. Кажется есть .text?
   if ($(event.target).hasClass("target")) {
     hits = hits + 1;
     round();
-  }
+  } else {
+    $(event.target).addClass("miss");
+    missedFieldId = "#" + $(event.target).attr("id");
+    missedList.push(missedFieldId);
+    missed +=1;
+    };
   // TODO: как-то отмечать если мы промахнулись? См CSS класс .miss
 }
 
